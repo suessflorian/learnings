@@ -1,0 +1,3 @@
+{
+  "services": ["http://gizmos:3001/query", "http://gadgets:3002/query"]
+}

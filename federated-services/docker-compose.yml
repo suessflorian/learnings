@@ -4,7 +4,17 @@ services:
     build: "./gizmos"
     ports:
       - "3001:3001"
+    expose:
+      - "3001"
   gadgets:
     build: "./gadgets"
     ports:
       - "3002:3002"
+    expose:
+      - "3002"
+  gateway:
+    image: ghcr.io/movio/bramble
+    volumes:
+      - ./config.json:/config.json
+    ports:
+      - "8082:8082"
