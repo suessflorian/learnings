@@ -1,6 +1,12 @@
+# This is the prerequsite schema required
+# for fedaration by the gateway
+directive @boundary on OBJECT | FIELD_DEFINITION
+
 type Query {
   service: Service!
-  gadget(id: Int!): Gadget!
+  gadget(id: ID!): Gadget
+
+  gizmo(id: ID!): Gizmo @boundary # accessor
 }
 
 type Service {
@@ -10,6 +16,12 @@ type Service {
 }
 
 type Gadget {
+  id: ID!
   name: String!
   inventor: String!
+}
+
+type Gizmo @boundary {
+  id: ID!
+  gadget: Gadget!
 }

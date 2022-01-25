@@ -10,7 +10,21 @@ import (
 	"github.com/graph-gophers/graphql-go/relay"
 )
 
+var gizmos = []gizmo{
+	{
+		Id:        graphql.ID("0"),
+		Name:      "Lightning Belt",
+		Craziness: 12,
+	},
+	{
+		Id:        graphql.ID("1"),
+		Name:      "Telescopic Glasses",
+		Craziness: 7,
+	},
+}
+
 type gizmo struct {
+	Id        graphql.ID
 	Name      string
 	Craziness int32
 }
@@ -18,12 +32,16 @@ type gizmo struct {
 type resolver struct{}
 
 func (_ *resolver) Gizmos() []gizmo {
-	return []gizmo{
-		{
-			Name:      "Lightning Belt",
-			Craziness: 12,
-		},
+	return gizmos
+}
+
+func (_ *resolver) Gizmo(args struct{ Id graphql.ID }) *gizmo {
+	for _, gizmo := range gizmos {
+		if gizmo.Id == args.Id {
+			return &gizmo
+		}
 	}
+	return nil
 }
 
 //go:embed schema.graphql

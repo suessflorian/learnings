@@ -13,7 +13,21 @@ import (
 //go:embed schema.graphql
 var schema string
 
+var gadgets = []gadget{
+	{
+		Id:       graphql.ID("0"),
+		Name:     "Zapifier",
+		Inventor: "Nikola Tesla",
+	},
+	{
+		Id:       graphql.ID("1"),
+		Name:     "Blitzer",
+		Inventor: "Elon Musk",
+	},
+}
+
 type gadget struct {
+	Id       graphql.ID
 	Name     string
 	Inventor string
 }
@@ -21,12 +35,34 @@ type gadget struct {
 type resolver struct{}
 
 func (_ *resolver) Gadget(args struct {
-	Id int32
-}) gadget {
-	return gadget{
-		Name:     "Zapifier",
-		Inventor: "Nikola Tesla",
+	Id graphql.ID
+}) *gadget {
+	for _, gadget := range gadgets {
+		if gadget.Id == args.Id {
+			return &gadget
+		}
 	}
+
+	return nil
+}
+
+type gizmo struct {
+	Id     graphql.ID
+	Gadget gadget
+}
+
+func (_ *resolver) Gizmo(args struct {
+	Id graphql.ID
+}) *gizmo {
+	for _, gadget := range gadgets {
+		if gadget.Id == args.Id {
+			return &gizmo{
+				Id:     args.Id,
+				Gadget: gadget,
+			}
+		}
+	}
+	return nil
 }
 
 func main() {
