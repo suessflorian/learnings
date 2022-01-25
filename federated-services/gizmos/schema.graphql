@@ -1,5 +1,12 @@
 type Query {
+  service: Service!
   gizmos: [Gizmo!]!
+}
+
+type Service {
+  name: String! # unique name for the service
+  version: String! # any string
+  schema: String! # the full schema for the service
 }
 
 type Gizmo {
