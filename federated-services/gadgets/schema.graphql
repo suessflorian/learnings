@@ -1,0 +1,8 @@
+type Query {
+  gadget(id: Int!): Gadget!
+}
+
+type Gadget {
+  name: String!
+  inventor: String!
+}

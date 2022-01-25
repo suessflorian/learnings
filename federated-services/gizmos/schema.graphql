@@ -1,0 +1,8 @@
+type Query {
+  gizmos: [Gizmo!]!
+}
+
+type Gizmo {
+  name: String!
+  craziness: Int!
+}
