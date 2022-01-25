@@ -1,0 +1,10 @@
+version: "3"
+services:
+  gizmos:
+    build: "./gizmos"
+    ports:
+      - "3001:3001"
+  gadgets:
+    build: "./gadgets"
+    ports:
+      - "3002:3002"
