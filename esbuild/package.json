@@ -1,0 +1,19 @@
+{
+  "name": "starting",
+  "version": "1.0.0",
+  "description": "use of esbuild from scratch",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild app.jsx --bundle --outfile=out.js"
+  },
+  "author": "Florian Suess",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "esbuild": "^0.14.19",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
