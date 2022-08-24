@@ -1,15 +1,15 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-const App = () => {
+function App() {
   const [todos, setTodos] = React.useState([]);
-  const [newTodo, setNewTodo] = React.useState("");
+  const [newTodo, setNewTodo] = React.useState('');
 
-  const addTodo = (newTodo) => {
-    if (newTodo in todos || newTodo == "") {
+  const addTodo = (incomingTodo) => {
+    if (incomingTodo in todos || incomingTodo === '') {
       return;
     }
-    setTodos([...todos, newTodo]);
+    setTodos([...todos, incomingTodo]);
   };
 
   return (
@@ -36,6 +36,6 @@ const App = () => {
       </form>
     </>
   );
-};
+}
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
